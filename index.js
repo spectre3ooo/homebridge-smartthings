@@ -163,13 +163,13 @@ SmartThingsPlatform.prototype = {
 	},
 
 	processFieldUpdate: function(attributeSet, that) {
-		that.log("Processing Update");
 		if (!((that.attributeLookup[attributeSet.attribute]) && (that.attributeLookup[attributeSet.attribute][attributeSet.device]))) return;
 		var myUsage = that.attributeLookup[attributeSet.attribute][attributeSet.device];
 		if (myUsage instanceof Array) {
 			for (var j = 0; j < myUsage.length; j++) {
 				var accessory = that.deviceLookup[attributeSet.device];
 				if (accessory) {
+					that.log(`Processing Update: [${attributeSet.device}] - [${attributeSet.attribute}] - ${attributeSet.value}`);
 					accessory.device.attributes[attributeSet.attribute] = attributeSet.value;
 					myUsage[j].getValue();
 				}
