@@ -105,8 +105,8 @@ function SmartThingsAccessory(platform, device) {
 			
             if (device.capabilities["Color Control"] !== undefined) {
 				thisCharacteristic = this.getaddService(Service.Lightbulb).getCharacteristic(Characteristic.Hue)
-                thisCharacteristic.on('get', function(callback) { callback(null, Math.round(that.device.attributes.hue*3.6)); });
-                thisCharacteristic.on('set', function(value, callback) { that.platform.api.runCommand(callback, that.deviceid, "setHue", { value1: Math.round(value/3.6) }); });
+                thisCharacteristic.on('get', function(callback) { callback(null, that.device.attributes.hue); });
+                thisCharacteristic.on('set', function(value, callback) { that.platform.api.runCommand(callback, that.deviceid, "setHue", { value1: value }); });
 				that.platform.addAttributeUsage("hue", this.deviceid, thisCharacteristic);
 
                 thisCharacteristic = this.getaddService(Service.Lightbulb).getCharacteristic(Characteristic.Saturation)
