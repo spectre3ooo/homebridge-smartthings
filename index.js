@@ -163,7 +163,7 @@ SmartThingsPlatform.prototype = {
 	},
 
 	processFieldUpdate: function(attributeSet, that) {
-		//that.log("Processing Update");
+		that.log("Processing Update");
 		if (!((that.attributeLookup[attributeSet.attribute]) && (that.attributeLookup[attributeSet.attribute][attributeSet.device]))) return;
 		var myUsage = that.attributeLookup[attributeSet.attribute][attributeSet.device];
 		if (myUsage instanceof Array) {
